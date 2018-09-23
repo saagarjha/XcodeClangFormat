@@ -1,8 +1,13 @@
 #import "ClangFormatCommand.h"
 
+#import "XCSourceTextRange+ClangFormat.h"
+
 #import <AppKit/AppKit.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
 #include <clang/Format/Format.h>
+#pragma clang diagnostic pop
 
 // Generates a list of offsets for ever line in the array.
 void updateOffsets(std::vector<size_t>& offsets, NSMutableArray<NSString*>* lines) {
@@ -150,16 +155,33 @@ NSUserDefaults* defaults = nil;
     updateOffsets(offsets, invocation.buffer.lines);
 
     std::vector<clang::tooling::Range> ranges;
-    for (XCSourceTextRange* range in invocation.buffer.selections) {
-        const size_t start = offsets[range.start.line] + range.start.column;
-        const size_t end = offsets[range.end.line] + range.end.column;
-        ranges.emplace_back(start, end - start);
+    if (invocation.buffer.selections.count != 1 || !invocation.buffer.selections.firstObject.isEmpty) {
+        for (XCSourceTextRange* range in invocation.buffer.selections) {
+            const size_t start = offsets[range.start.line] + range.start.column;
+            const size_t end = offsets[range.end.line] + range.end.column;
+            ranges.emplace_back(start, end - start);
+        }
+    } else {
+        ranges.emplace_back(0, invocation.buffer.completeBuffer.length);
     }
 
     // Calculated replacements and apply them to the input buffer.
     const llvm::StringRef filename("<stdin>");
-    auto replaces = clang::format::reformat(format, code, ranges, filename);
+    auto replaces = clang::format::sortIncludes(format, code, ranges, filename);
     auto result = clang::tooling::applyAllReplacements(code, replaces);
+    if (!result) {
+        // We could not apply the calculated replacements.
+        completionHandler([NSError
+                           errorWithDomain:errorDomain
+                           code:0
+                           userInfo:@{
+                                      NSLocalizedDescriptionKey : @"Failed to apply formatting replacements."
+                                      }]);
+        return;
+    }
+    ranges = clang::tooling::calculateRangesAfterReplacements(replaces, ranges);
+    replaces = clang::format::reformat(format, *result, ranges, filename);
+    result = clang::tooling::applyAllReplacements(*result, replaces);
 
     if (!result) {
         // We could not apply the calculated replacements.
@@ -187,9 +209,8 @@ NSUserDefaults* defaults = nil;
 
     // Update the selections with the shifted code positions.
     for (auto& range : ranges) {
-        const size_t start = clang::tooling::shiftedCodePosition(replaces, range.getOffset());
-        const size_t end =
-            clang::tooling::shiftedCodePosition(replaces, range.getOffset() + range.getLength());
+        const size_t start = replaces.getShiftedCodePosition(range.getOffset());
+        const size_t end = replaces.getShiftedCodePosition(range.getOffset() + range.getLength());
 
         // In offsets, find the value that is smaller than start.
         auto start_it = std::lower_bound(offsets.begin(), offsets.end(), start);

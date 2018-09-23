@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49CB67F321577B0700C0EF36 /* XCSourceTextRange+ClangFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB67F221577B0700C0EF36 /* XCSourceTextRange+ClangFormat.m */; };
 		559B23E31D7EBDA300937AB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 559B23E21D7EBDA300937AB3 /* AppDelegate.m */; };
 		559B23E61D7EBDA300937AB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 559B23E51D7EBDA300937AB3 /* main.m */; };
 		559B23E81D7EBDA300937AB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 559B23E71D7EBDA300937AB3 /* Assets.xcassets */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49CB67F121577B0700C0EF36 /* XCSourceTextRange+ClangFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCSourceTextRange+ClangFormat.h"; sourceTree = "<group>"; };
+		49CB67F221577B0700C0EF36 /* XCSourceTextRange+ClangFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XCSourceTextRange+ClangFormat.m"; sourceTree = "<group>"; };
 		556DCDEF1D7EF694005956C8 /* XcodeClangFormat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeClangFormat.entitlements; sourceTree = "<group>"; };
 		557D38B71D7F270E00708269 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
 		559B23DE1D7EBDA300937AB3 /* XcodeClangFormat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeClangFormat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +98,7 @@
 				559B23DF1D7EBDA300937AB3 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		559B23DF1D7EBDA300937AB3 /* Products */ = {
 			isa = PBXGroup;
@@ -143,6 +147,8 @@
 				559B24151D7EBDC400937AB3 /* ClangFormatExtension.m */,
 				559B24171D7EBDC400937AB3 /* ClangFormatCommand.h */,
 				559B24181D7EBDC400937AB3 /* ClangFormatCommand.mm */,
+				49CB67F121577B0700C0EF36 /* XCSourceTextRange+ClangFormat.h */,
+				49CB67F221577B0700C0EF36 /* XCSourceTextRange+ClangFormat.m */,
 				559B241A1D7EBDC400937AB3 /* Info.plist */,
 				559B24121D7EBDC400937AB3 /* Supporting Files */,
 			);
@@ -202,7 +208,7 @@
 		559B23D61D7EBDA300937AB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Mapbox;
 				TargetAttributes = {
 					559B23DD1D7EBDA300937AB3 = {
@@ -282,6 +288,7 @@
 			files = (
 				559B24161D7EBDC400937AB3 /* ClangFormatExtension.m in Sources */,
 				559B24191D7EBDC400937AB3 /* ClangFormatCommand.mm in Sources */,
+				49CB67F321577B0700C0EF36 /* XCSourceTextRange+ClangFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,15 +323,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -363,15 +379,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -438,11 +463,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "clang-format/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(LLVM_CXXFLAGS)",
 					"$(OTHER_CFLAGS)",
@@ -475,11 +499,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "clang-format/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(LLVM_CXXFLAGS)",
 					"$(OTHER_CFLAGS)",
